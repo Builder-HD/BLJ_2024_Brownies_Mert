@@ -46,47 +46,55 @@ ILIKE = Selbe prinzip wie LIKE nur achtet es nicht auf gross oder kleinschreibun
 
 AS = Ein Alias/Namensersatz (Für Beispiele nach Alias suchen)
 
-UNION ALL = 
-
-UNION =
-
-COALESCE =
-
-EXTRACT = 
-
-TO_CHAR/RANDOM = 
-
-ROUND/CASE = 
-
-FORMAT = 
-
-RPAD/LPAD = 
-
-TRIM = 
-
-REPLACE = 
-
-TO_DATE = 
-
-AGE = 
-
-INNER JOIN = 
-
-LEFT JOIN = 
-
-RIGHT JOIN = 
-
-COUNT() = 
-
-MAX() = 
-
-MIN() = 
-
-SUM() = 
-
-AVG() = 
-
-HAVING = 
+UNION ALL = Kombiniert Ergebnisse aus mehreren SELECT-Abfragen mit Duplikaten. SELECT first_name FROM employees UNION ALL SELECT last_name FROM employees;
+ 
+UNION = Kombiniert Ergebnisse aus mehreren SELECT-Abfragen ohne Duplikate. SELECT first_name FROM employees UNION SELECT last_name FROM employees;
+ 
+COALESCE = Gibt den ersten Nicht-NULL-Wert in einer Liste zurück. SELECT COALESCE(commission_pct, 0) AS final_commission FROM employees; Um eine solche Liste zu erstellen, kannst du die COALESCE-Funktion verwenden, die den ersten Nicht-NULL-Wert aus einer Reihe von Werten zurückgibt. Für dein Szenario würdest du folgendes SQL-Statement schreiben: Abfrage SELECT person_id, COALESCE(phone_number, email, 'Nicht vorhanden') AS contact_info FROM people;
+ 
+EXTRACT = Extrahiert Teile eines Datums (z. B. Jahr, Monat, Tag). SELECT EXTRACT(YEAR FROM hire_date) AS hire_year FROM employees;
+ 
+TO_CHAR/RANDOM??? = Formatiert Werte (Zahlen oder Datumswerte) als Text. Sonst random was auswählen. SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD') AS formatted_date FROM dual; (SELECT RANDOM() AS random_value;)
+ 
+ROUND = Rundet eine Zahl auf die angegebene Dezimalstelle. SELECT ROUND(123.456, 2) AS rounded; -- Ergebnis: 123.46
+ 
+CASE =Du kannst für diese Aufgabe auch die CASE-Anweisung verwenden, um eine bedingte Logik zu implementieren. Dies ist eine flexible Alternative zu COALESCE, bei der du explizit angeben kannst, welche Bedingungen geprüft werden sollen. Abfrage mit CASE SELECT person_id, CASE WHEN phone_number IS NOT NULL THEN phone_number WHEN email IS NOT NULL THEN email ELSE 'Nicht vorhanden' END AS contact_info FROM people;
+ 
+FORMAT = Formatiert Zahlen oder Text. SELECT FORMAT('%.2f', 1234.567) AS formatted_number; -- Ergebnis: '1234.57'
+ 
+RPAD/LPAD = fügt Zeichen links (LPAD) oder rechts (RPAD) hinzu, um eine feste Länge zu erreichen. SELECT LPAD('123', 5, '0') AS left_padded; -- Ergebnis: '00123' SELECT RPAD('ABC', 5, '-') AS right_padded; -- Ergebnis: 'ABC--'
+ 
+TRIM = Entfernt Leerzeichen oder bestimmte Zeichen. SELECT TRIM(' SQL ') AS trimmed; -- Ergebnis: 'SQL'
+ 
+REPLACE = Ersetzt einen Teilstring durch einen anderen. SELECT REPLACE('PostgreSQL', 'Post', 'My') AS replaced; -- Ergebnis: 'MygreSQL'
+ 
+TO_DATE = Konvertiert Text in ein Datumsformat. SELECT TO_DATE('2025-01-20', 'YYYY-MM-DD') AS date_formatted;
+ 
+AGE = Berechnet die Differenz zwischen zwei Datumswerten. SELECT AGE(NOW(), hire_date) AS time_employed FROM employees;
+ 
+INNER JOIN = Verbindet Tabellen und gibt Datensätze mit Übereinstimmungen zurück. SELECT e.first_name, d.department_name FROM employees e INNER JOIN departments d ON e.department_id = d.department_id;
+ 
+LEFT JOIN = Gibt alle Datensätze aus der linken Tabelle zurück, auch ohne Übereinstimmungen. SELECT e.first_name, d.department_name FROM employees e LEFT JOIN departments d ON e.department_id = d.department_id;
+ 
+RIGHT JOIN = Gibt alle Datensätze aus der rechten Tabelle zurück, auch ohne Übereinstimmungen. SELECT e.first_name, d.department_name FROM employees e RIGHT JOIN departments d ON e.department_id = d.department_id;
+ 
+COUNT() = Zählt Datensätze oder Nicht-NULL-Werte. SELECT COUNT(*) AS total_employees FROM employees;
+ 
+MAX() = Gibt den höchsten Wert einer Spalte zurück. SELECT MAX(salary) AS highest_salary FROM employees;
+ 
+MIN() = Gibt den niedrigsten Wert einer Spalte zurück. SELECT MIN(salary) AS lowest_salary FROM employees;
+ 
+SUM() = Summiert alle Werte in einer Spalte. SELECT SUM(salary) AS total_salary FROM employees;
+ 
+AVG() = Berechnet den Durchschnitt der Werte in einer Spalte. SELECT AVG(salary) AS average_salary FROM employees;
+ 
+HAVING = Filtert Gruppenergebnisse nach Aggregatfunktionen
+ 
+Ohne GROUP BY: Sie können HAVING auch ohne Gruppierung verwenden, um Bedingungen auf Aggregatfunktionen der gesamten Tabelle anzuwenden: SELECT SUM(salary) AS TotalSalary FROM employees HAVING SUM(salary) > 100000;
+ 
+Mit GROUP BY: SELECT department_id, SUM(salary) AS TotalSalary FROM employees GROUP BY department_id HAVING SUM(salary) > 50000;
+ 
+SELECT department_id, COUNT() AS employee_count FROM employees GROUP BY department_id HAVING COUNT() > 10;
 
 ## Berechtigungen
 GRANT = Berechtigung erteilen
