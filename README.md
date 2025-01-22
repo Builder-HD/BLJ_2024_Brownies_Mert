@@ -13,6 +13,11 @@ Path ist der Pfad zu der Datei
 
 ```\copy [person(name, id_ort)] FROM '[PATH/PATH]' DELIMITER ';' ENCODING 'UTF-8' CSV HEADER;```
 
+# Importieren einer SQL Datei
+Zum verwenden dieser Methode, wird der direkte Login aufs Postgres erfordert
+
+\i [PFAD/PFAD]
+
 ---------------------------------------------------------------------------------------------
 
 # Schlüsselwörter/attribute
@@ -185,9 +190,9 @@ Die Struktur einer Tabelle anzeigen
 
 ---------------------------------------------------------------------------------------------
 
-Eine Tabelle löschen
+Eine Tabelle löschen mit all ihren Inhalten
 
-```\drop table person```
+```\drop table person CASCADE```
 
 ---------------------------------------------------------------------------------------------
 
@@ -211,9 +216,23 @@ Inhalt einer Tabelle verändern (z.B. rename oder datentyp ändern)
 
 ---------------------------------------------------------------------------------------------
 
+Das verändern eines Datentypes eines Attributs
+
+```ALTER TABLE [Tabellenname]```
+```ALTER COLUMN [ATTRIBUTSNAME] TYPE VARCHAR(10);```
+
+---------------------------------------------------------------------------------------------
+
 Values abändern
 
 ```UPDATE ort SET plz=8307 WHERE name='Effretikon';```
+
+---------------------------------------------------------------------------------------------
+
+Das löschen eines Eintrags in der Datenbank
+
+```DELETE FROM [Tabellenname]```
+```WHERE [Attributsname] = 'XYZ';```
 
 ---------------------------------------------------------------------------------------------
 
