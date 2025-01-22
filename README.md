@@ -1,12 +1,17 @@
 # Wichtige Infos
 Bei den Commands, wenn ein Teil in [] steht, z.B. [schema], dann bedeutet das, dass dort dein eigener Wert stehen muss, also nicht einfach copy pasten
 
+# DIREKTER LOGIN AUF POSTGRES
+psql -d postgres -U postgres -h [IP]
+
 # KOPIEREN EINER CSV DATEI
+Zum verwenden dieser Methode, wird der direkte Login aufs Postgres erfordert
+
 CSV Datei in die Tabelle eintragen. DELIMITER bestimmt die trennung, CSV HEADER zeigt ob ein Header vorhanden ist
 
 Path ist der Pfad zu der Datei
 
-```\copy [person(name, id_ort)] FROM "[PATH]" DELIMITER ';' ENCODING 'UTF-8' CSV HEADER;```
+```\copy [person(name, id_ort)] FROM '[PATH/PATH]' DELIMITER ';' ENCODING 'UTF-8' CSV HEADER;```
 
 ---------------------------------------------------------------------------------------------
 
@@ -72,11 +77,11 @@ TO_DATE = Konvertiert Text in ein Datumsformat. SELECT TO_DATE('2025-01-20', 'YY
  
 AGE = Berechnet die Differenz zwischen zwei Datumswerten. SELECT AGE(NOW(), hire_date) AS time_employed FROM employees;
  
-INNER JOIN = Verbindet Tabellen und gibt Datensätze mit Übereinstimmungen zurück. SELECT e.first_name, d.department_name FROM employees e INNER JOIN departments d ON e.department_id = d.department_id;
+INNER JOIN = Verbindet Tabellen und gibt Datensätze mit Übereinstimmungen zurück. SELECT e.first_name, d.department_name FROM [employees e INNER JOIN departments d] ON e.department_id = d.department_id;
  
-LEFT JOIN = Gibt alle Datensätze aus der linken Tabelle zurück, auch ohne Übereinstimmungen. SELECT e.first_name, d.department_name FROM employees e LEFT JOIN departments d ON e.department_id = d.department_id;
+LEFT JOIN = Gibt alle Datensätze aus der linken Tabelle zurück, auch ohne Übereinstimmungen. SELECT e.first_name, d.department_name [FROM employees e LEFT JOIN] departments d ON e.department_id = d.department_id;
  
-RIGHT JOIN = Gibt alle Datensätze aus der rechten Tabelle zurück, auch ohne Übereinstimmungen. SELECT e.first_name, d.department_name FROM employees e RIGHT JOIN departments d ON e.department_id = d.department_id;
+RIGHT JOIN = Gibt alle Datensätze aus der rechten Tabelle zurück, auch ohne Übereinstimmungen. SELECT e.first_name, d.department_name FROM employees e [RIGHT JOIN departments d] ON e.department_id = d.department_id;
  
 COUNT() = Zählt Datensätze oder Nicht-NULL-Werte. SELECT COUNT(*) AS total_employees FROM employees;
  
