@@ -607,3 +607,9 @@ Mit in kann ich das or skippen und abkürzen
 Das getrennte Anzeigen von Daten, aber zur Darstellung als ein ganzes funktioniert wie folgt:
 
 ```SELECT 'The salary of ' || last_name || ' after a 10% raise is $' || ROUND(salary * 1.1) AS "New Salary" FROM employee WHERE commission_pct IS NULL;```
+
+---------------------------------------------------------------------------------------------
+
+Referential actions
+
+```alter table <tabellenname> add constraint <Name_FK> foreign key (Attribut(Welches FK annimmt)) References <andere_tabelle_VomPK>(Attribut_Mit-PK) on delete <cascade> on update <cascade>```
