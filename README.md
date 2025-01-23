@@ -17,6 +17,7 @@ Path ist der Pfad zu der Datei
 Zum verwenden dieser Methode, wird der direkte Login aufs Postgres erfordert
 
 \i [PFAD/PFAD]
+psql --username=<db_user_name> databasename < data_base_dump
 
 ---------------------------------------------------------------------------------------------
 
