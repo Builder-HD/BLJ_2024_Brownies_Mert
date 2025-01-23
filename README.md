@@ -613,3 +613,18 @@ Das getrennte Anzeigen von Daten, aber zur Darstellung als ein ganzes funktionie
 Referential actions
 
 ```alter table <tabellenname> add constraint <Name_FK> foreign key (Attribut(Welches FK annimmt)) References <andere_tabelle_VomPK>(Attribut_Mit-PK) on delete <cascade> on update <cascade>```
+
+
+`alter table <tabellenname> add constraint <Name_FK> foreign key (<spalten_name>) References <andere_tabelle>(<spalte>) on delete <cascade> on update <cascade>` = 
+	FK mit Referential Actions
+ 
+ 
+	(Cascade: automatisch Angepasst
+ 
+	set NULL: setzt den Wert des FK auf NULL
+ 
+	set default: setzt auf einen festgelegten Standardwert
+
+	restrict: es wird verweigert, solang keine abhängige Einträge existieren
+ 
+	no action: keine Änderung in der Referenztabelle ist erlaubt)
