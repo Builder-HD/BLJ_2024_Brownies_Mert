@@ -16,8 +16,7 @@ Path ist der Pfad zu der Datei
 # Importieren einer SQL Datei
 Zum verwenden dieser Methode, wird der direkte Login aufs Postgres erfordert
 
-\i [PFAD/PFAD]\n
-psql --username=<db_user_name> databasename < data_base_dump
+\i [PFAD/PFAD]
 
 ---------------------------------------------------------------------------------------------
 
