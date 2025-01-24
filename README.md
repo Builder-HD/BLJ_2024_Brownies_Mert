@@ -18,9 +18,9 @@ Zum verwenden dieser Methode, wird der direkte Login aufs Postgres erfordert
 
 \i [PFAD/PFAD]
 
-# Einen einzelnen Befehl in bash ausführe#
+# Einen einzelnen Befehl in bash ausführe
 
-"\! [Befehl]	Der Befehl wir in Bash Ausgeführ auch wenn man in postgres drin ist."
+```\! [Befehl]	Der Befehl wir in Bash Ausgeführ auch wenn man in postgres drin ist.```
 ---------------------------------------------------------------------------------------------
 
 # Schlüsselwörter/attribute
